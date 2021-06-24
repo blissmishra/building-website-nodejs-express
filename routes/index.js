@@ -5,11 +5,19 @@ const feedbackRoute = require('./feedback');
 
 const router = express.Router();
 
-module.exports = (params) => {
-    router.get('/', (request, response) => {
+module.exports = params => {
+    const {
+        speakersService
+    } = params;
 
-        response.render('pages/index', {
-            pageTitle: 'Welcome'
+    router.get('/', async (request, response) => {
+        const topSpeakers = await speakersService.getList();
+        const artwork = await speakersService.getAllArtwork();
+        response.render('layout', {
+            pageTitle: 'Welcome',
+            template: 'index',
+            topSpeakers,
+            artwork
         });
     });
 

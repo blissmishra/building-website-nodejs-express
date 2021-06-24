@@ -2,8 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-module.exports = (params) => {
-
+module.exports = params => {
     const {
         feedbackService
     } = params;
